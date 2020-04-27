@@ -1,0 +1,30 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "remove:dep": "rm -rf node_modules && rm -rf packages/common/node_modules && rm -rf packages/common_mob/node_modules && rm -rf packages/client_mob/node_modules && rm -rf packages/client_mob/ios/Pods && rm -rf packages/supplier_mob/node_modules && rm -rf packages/supplier_mob/ios/Pods",
+    "reinstall": "yarn remove:node && yarn install",
+    "clear:cache": "watchman watch-del-all",
+    "ios:s": "lerna --scope=supplier_mob run ios",
+    "and:s": "lerna --scope=supplier_mob run android",
+    "ios:c": "lerna --scope=client_mob run ios",
+    "and:c": "lerna --scope=client_mob run android",
+    "start:c": "lerna --scope=client_mob run start",
+    "start:s": "lerna --scope=supplier_mob run start"
+  },
+  "devDependencies": {
+    "lerna": "^3.20.2",
+    "core-js": "^3.6.5"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native/**",
+      "**/react-native-typescript-transformer",
+      "**/react-native-elements/**"
+    ]
+  }
+}
